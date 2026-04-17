@@ -2,10 +2,7 @@ package ernesto.viaggi_lavoro.entities;
 
 import ernesto.viaggi_lavoro.enums.StatoViaggio;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -18,12 +15,11 @@ import java.time.LocalDate;
 public class Viaggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
-
-    @Column
     private String destinazione;
-    @Column
     private LocalDate data;
+
     @Enumerated(EnumType.STRING)
     private StatoViaggio stato;
 }

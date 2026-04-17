@@ -11,14 +11,11 @@ import lombok.*;
 public class Dipendente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
-
-    @Column
     private String username;
-    @Column
     private String nome;
-    @Column
     private String cognome;
-    @Column
+    @Column(unique = true)
     private String email;
 }

@@ -18,11 +18,9 @@ import java.time.LocalDate;
 public class Prenotazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
-
-    @Column
     private LocalDate data_prenotazione;
-    @Column
     private String note;
 
     @OneToOne

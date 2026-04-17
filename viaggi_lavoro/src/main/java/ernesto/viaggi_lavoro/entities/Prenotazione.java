@@ -2,7 +2,6 @@ package ernesto.viaggi_lavoro.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -20,7 +19,7 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
-    private LocalDate data_prenotazione;
+    private LocalDate dataPrenotazione;
     private String note;
 
     @OneToOne

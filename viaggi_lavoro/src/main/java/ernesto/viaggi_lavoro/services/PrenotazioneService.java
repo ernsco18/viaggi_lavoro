@@ -19,7 +19,7 @@ public class PrenotazioneService {
     public Prenotazione save(Prenotazione prenotazione){
         if(prenotazioneRepository.existsByDipendenteIdAndDataPrenotazione(
                 prenotazione.getDipendente().getId(),
-                prenotazione.getData_prenotazione())){
+                prenotazione.getDataPrenotazione())){
             throw new EntityExistsException("Prenotazione existente");
         }
         return prenotazioneRepository.save(prenotazione);

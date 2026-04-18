@@ -30,7 +30,7 @@ public class PrenotazioneController {
         this.viaggioService = viaggioService;
     }
 
-    @GetMapping // <-- AGGIUNTO: mancava l'annotazione HTTP!
+    @GetMapping
     public Page<Prenotazione> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
@@ -39,11 +39,11 @@ public class PrenotazioneController {
         return prenotazioneService.findAll(page, size, sortBy);
     }
 
-    @PostMapping // <-- CORRETTO: da @GetMapping a @PostMapping
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Prenotazione create(@RequestBody @Valid PrenotazioneDTO body, BindingResult validationResult){ // <-- CORRETTO: @RequestBody al posto di @RequestParam
 
-        // CORRETTO: Tolto il "!" che invertiva la logica!
+
         if (validationResult.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, validationResult.getFieldError().getDefaultMessage());
         }
@@ -62,13 +62,7 @@ public class PrenotazioneController {
 
     @PutMapping("/{id}")
     public Prenotazione update(@PathVariable Long id, @RequestBody @Valid PrenotazioneDTO request) {
-        /*
-          NOTA BENE SULL'UPDATE:
-          Così stai passando un oggetto "vuoto" con solo le note valorizzate al service.
-          A seconda di come hai scritto "prenotazioneService.update()", rischi di
-          sovrascrivere a null il dipendente e il viaggio sul database.
-          Solitamente l'aggiornamento si fa recuperando prima l'entità esistente dal DB.
-        */
+
         Prenotazione newPrenotazione = new Prenotazione();
         newPrenotazione.setNote(request.note());
 
